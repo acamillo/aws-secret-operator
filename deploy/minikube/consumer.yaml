@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: aws-secret-consumer
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: aws-secret-consumer
+    spec:
+      containers:
+      - name: aws-secret-consumer
+        image: gcr.io/google_containers/defaultbackend:1.0
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: service-key
+          mountPath: /root/aws-secret
+      volumes:
+      - name: service-key
+        secret:
+          secretName: mysecret

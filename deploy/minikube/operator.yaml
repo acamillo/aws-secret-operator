@@ -19,6 +19,10 @@ spec:
           command:
             - aws-secret-operator
           imagePullPolicy: IfNotPresent
+
+          volumeMounts:
+            - mountPath: /.aws
+              name: aws-credentials-volume
           env:
             - name: WATCH_NAMESPACE
               valueFrom:
@@ -30,3 +34,18 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "aws-secret-operator"
+            - name: AWS_SDK_LOAD_CONFIG
+              value: "1"
+            - name: AWS_DEFAULT_PROFILE
+              value: "default"
+            - name: AWS_REGION
+              value: "us-east-1"
+
+      volumes:
+        - name: aws-credentials-volume
+          hostPath:
+            # directory location on host
+            path: /.aws
+            # this field is optional
+            type: Directory
+

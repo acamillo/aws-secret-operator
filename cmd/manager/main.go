@@ -7,8 +7,8 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/acamillo/aws-secret-operator/aws-secret-operator/pkg/apis"
-	"github.com/acamillo/aws-secret-operator/aws-secret-operator/pkg/controller"
+	"github.com/acamillo/aws-secret-operator/pkg/apis"
+	"github.com/acamillo/aws-secret-operator/pkg/controller"
 
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	"github.com/operator-framework/operator-sdk/pkg/leader"
